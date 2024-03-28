@@ -22,20 +22,23 @@ for i in tau:
 for i in inc:
     inc_list.append(math.log(i/10.E-24))
 
-a, b = np.polyfit(z_list, tau_list, 1)
+a, b = np.polyfit(z_list, tau_list, 1, cov=True)
 
 x = []
 y = []
 for i in np.linspace(2.5, 4.5, num=100):
     x.append(i)
-    y.append(i*a+b)
+    y.append(i*a[0]+a[1])
 
-plt.plot(x, y, label=f"Régression linéaire avec pente de {round(a,3)}")
+print(a,b)
+
+plt.plot(x, y, label=f"Régression linéaire avec pente de {a[0]:.1f}" + r"$\pm$" + f"{b[0][0]:.1f}")
 plt.scatter(z_list, tau_list, label="Valeurs associées aux filtres")
 plt.errorbar(z_list, tau_list, inc_list, capsize=5, linestyle='')
 plt.xlabel('ln(Z)')
 plt.ylabel('ln(tau)')
 plt.tick_params("both", direction="in")
 plt.legend()
+plt.show()
 # plt.xlim(xmin=0, xmax=30)
-plt.savefig('Graph_Regression.png', dpi = 600)
+# plt.savefig('Graph_Regression.png', dpi = 600)
