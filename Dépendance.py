@@ -8,7 +8,7 @@ from scipy.optimize import curve_fit
 
 z = [42, 74, 47, 13, 29]
 tau = [1.26E-20, 3.38E-20, 3.20E-20, 9.49E-22, 1.83E-20]
-inc = []
+inc = [0.63E-20, 1.7E-20, 1.6E-20, 5.1E-22, 0.93E-20]
 z_list = []
 tau_list = []
 inc_list = []
